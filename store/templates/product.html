@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="contain">
+    <div class="product-cards">
+        <div class="product-images">
+            <img src="{{ product.image.url }}" alt="Product Image">
+        </div>
+        <div class="product-detail">
+            <h2 class="product-titles">{{ product.name }}</h2>
+            <div class="stock">
+                {% if product.inventory > 10 %}
+                    <div>In-Stock</div>
+                {% elif product.inventory > 0 %}
+                    <div><font color="red">Low Stock</font></div>
+                {% else %}
+                    <div><font color="red">Out-of-Stock</font></div>
+                {% endif %}
+            </div>
+            <p class="product-prices">R{{ product.price }}</p>
+            <form id="add_to_cart_form" method="post" action="{% url 'cart:add_to_cart' product_id=product.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <div class="custom-select">
+                    <select name="size">
+                        <option value="0">Select size</option>
+                        <option value="3">Size 3</option>
+                        <option value="4">Size 4</option>
+                        <option value="5">Size 5</option>
+                        <option value="6">Size 6</option>
+                        <option value="7">Size 7</option>
+                        <option value="8">Size 8</option>
+                        <option value="9">Size 9</option>
+                        <option value="10">Size 10</option>
+                        <option value="11">Size 11</option>
+                        <option value="12">Size 12</option>
+                    </select>
+                </div>
+                <div id="button-elements">
+                    <button class="add-to-cart1" type="submit">Add to Cart</button>
+                    <div id="favorite">♥ Favorite</div>
+                </div>
+            </form>
+            <p class="product-descriptions">
+                The Drip Liwkidz are the first sneakers that we dropped; they are the legends behind the Drip brand. We imagined what would the Likwidz of the future look like, we then conceptualized and came up with the “Likwidz 23’. We designed the sneaker to offer a feeling of a massage on your feet. The outer sole has our heritage logo monogram and an octopus grid design. The sole can take on tough terrain and still offer much comfort from the EVA midsole.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('#add_to_cart_form').on('submit', function(event) {
+        event.preventDefault(); 
+        
+        var form = $(this);
+        var product_id = form.find('input[name="product_id"]').val(); 
+        var size = form.find('select[name="size"]').val(); 
+        var csrf_token = form.find('input[name="csrfmiddlewaretoken"]').val(); 
+        
+        var addToCartUrl = "/cart/add/" + product_id + "/";
+
+        $.ajax({
+            type: 'POST',
+            url: addToCartUrl, 
+            data: {
+                'size': size,
+                'csrfmiddlewaretoken': csrf_token,
+                'quantity': 1 
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.message) {
+                    alert(response.message); 
+
+                    
+                    $('#cart_count').text(response.cart_count); 
+                    $('#cart_total').text(response.cart_total); 
+
+                    window.location.reload(); 
+                } else {
+                    alert('Error: ' + response.message); 
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('AJAX Error:', textStatus, errorThrown); 
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

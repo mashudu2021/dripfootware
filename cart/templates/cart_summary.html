@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
+{% if cart_items %}
+<div class="shop-cart">
+    <div class="column-labels">
+        <label class="carts-image">Image</label>
+        <label class="carts-details">Cart</label>
+        <label class="carts-price">Price</label>
+        <label class="carts-quantity">Quantity</label>
+        <label class="carts-removal">Actions</label>
+        <label class="carts-size">Size</label>
+    </div>
+    {% for item in cart_items %}
+    <div class="carts">
+        <div class="carts-image">
+            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+        </div>
+        <div class="carts-details">
+            <div class="product-title">{{ item.product.name }}</div>
+            <p class="carts-description">We designed the sneaker to offer a feeling of a massage on your feet. The outer sole has our heritage logo monogram and an octopus grid design. The sole can ...</p>
+        </div>
+        <div class="carts-price">R{{ item.product.price }}</div>
+        <div class="carts-quantity">
+            {{ item.quantity }}
+        </div>
+        <div class="carts-size">
+            <div class="carts-actions">
+                <input type="number" value="{{ item.size }}" min="1">
+              </div>         
+        </div>
+        <div class="carts-actions">
+            <form class="remove-form" action="{% url 'cart:remove_from_cart' product_id=item.product.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="size" value="{{ item.size }}">
+                <input type="hidden" name="action" value="delete">
+                <button class="remove-carts" type="submit">Remove</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="totals">
+        <div class="totals-item">
+            <label>Subtotal</label>
+            <div class="totals-value" id="cart-subtotal">R{{ subtotal }}</div>
+        </div>
+        <div class="totals-item">
+            <label>Tax (15%)</label>
+            <div class="totals-value" id="cart-tax">R{{ tax }}</div>
+        </div>
+        <div class="totals-item totals-item-total">
+            <label>Grand Total</label>
+            <div class="totals-value" id="cart-total">R{{ grand_total }}</div>
+        </div>
+    </div>
+
+    <button class="checkout">Checkout</button>
+
+{% else %}
+    <p class="h2s claw">Your cart is empty.</p>
+{% endif %}
+</div>
+
+<script>
+ $(document).ready(function() {
+        $('.remove-from-cart').on('click', function(event) {
+            event.preventDefault(); 
+            
+            var button = $(this);
+            var product_id = button.data('product-id'); 
+            var size = button.data('size'); 
+            var csrf_token = $('input[name="csrfmiddlewaretoken"]').val(); 
+            
+            $.ajax({
+                type: 'POST',
+                url: '/cart/remove/' + product_id + '/', 
+                data: {
+                    'size': size,
+                    'csrfmiddlewaretoken': csrf_token
+                },
+                dataType: 'json',
+                success: function(response) {
+                    alert(response.message); 
+                    $('#cart_count').text(response.cart_count); 
+                    $('#cart_total').text(response.cart_total); 
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('AJAX Error:', textStatus, errorThrown); 
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $('.update-cart-form').on('submit', function(event) {
+            event.preventDefault(); 
+            
+            var form = $(this);
+            var product_id = form.find('input[name="product_id"]').val(); 
+            var quantity = form.find('input[name="quantity"]').val(); 
+            var size = form.find('select[name="size"]').val(); 
+            var csrf_token = form.find('input[name="csrfmiddlewaretoken"]').val(); 
+            
+            $.ajax({
+                type: 'POST',
+                url: '/cart/update/' + product_id + '/', 
+                data: {
+                    'quantity': quantity,
+                    'size': size,
+                    'csrfmiddlewaretoken': csrf_token
+                },
+                dataType: 'json',
+                success: function(response) {
+                    alert(response.message); 
+                    $('#cart_count').text(response.cart_count); 
+                    $('#cart_total').text(response.cart_total); 
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('AJAX Error:', textStatus, errorThrown); 
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+    
+    $('.size-form').on('submit', function(event) {
+        event.preventDefault();
+        var form = $(this);
+        var product_id = form.attr('action').split('/').slice(-2, -1)[0]; 
+        var size = form.find('input[name="size"]').val(); 
+        var csrf_token = form.find('input[name="csrfmiddlewaretoken"]').val(); 
+        
+        var updateCartUrl = form.attr('action'); 
+        
+        $.ajax({
+            type: 'POST',
+            url: updateCartUrl, 
+            data: {
+                'size': size,
+                'csrfmiddlewaretoken': csrf_token,
+                'quantity': 1 
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.message) {
+                    alert(response.message); 
+
+                    
+                    $('#cart_count').text(response.cart_count); 
+                    $('#cart_total').text(response.cart_total); 
+                } else {
+                    alert('Error: ' + response.message); 
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('AJAX Error:', textStatus, errorThrown); 
+            }
+        });
+    });
+});
+
+  </script>
+  
+{% endblock %}
+

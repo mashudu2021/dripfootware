@@ -1,0 +1,28 @@
+<section class="layout">
+    <div class="search-1-1-C61RwL" data-id="56:68"></div>
+{% if user.is_authenticated %}    
+    <a href="{% url 'cart:cart_summary' %}" ><div class="shopping-cart-1-1-C61RwL" data-id="56:69"><span class="cart__count" id="cart-badge">{{ cart|length }}</span>
+    </div></a>
+{% else %} 
+<a href="{% url 'login' %}" ><div class="shopping-cart-1-1-C61RwL" data-id="56:69">
+</div></a>    
+{% endif %}
+{% if user.is_authenticated %}    
+    <a class="logout" href="{% url 'logout' %}">log out |</a>
+    <div class="user-1-C61R" data-id="56:70"></div>  
+{% else %} 
+    <a href="{% url 'login' %}">
+    <div class="user-1-C61RwL" data-id="56:70"></div></a>
+
+{% endif %}
+    <a href="{% url 'home' %}"><div class="logo-1-C61RwL" data-id="56:71"></div></a>
+    <div class="home-C61RwL" data-id="56:72" ><a href="{% url 'home' %}">Home</a></div>
+    <div class="shop-C61RwL" data-id="56:73" ><a href="{% url 'shop' %}">Shop</a></div>
+    <div class="pre-order-C61RwL" data-id="56:74"><a href="{% url 'pre-order' %}">pre-order</a></div>
+{% if user.is_authenticated %}   
+    <div class="tracker-C61RwL" data-id="56:75">tracker</div>
+{% else %} 
+<a href="{% url 'login' %}" ><div class="tracker-C61RwL" data-id="56:75">tracker</div></a>
+{% endif %}
+    <div class="about-us-C61RwL" data-id="56:76">about me</div>
+</section>

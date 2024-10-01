@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main">
+    <div class="rectangle-1-C61RwL" onclick="Lib.autoanim_redirect('desktop-4,desktop-1%23desktop-3,,ease-in,255.5234432220459;desktop-3,desktop-1%23desktop-2,,ease-in,255.5234432220459;desktop-2,desktop-1%23desktop-1,,ease-in,255.5234432220459', event)" onmouseover="" data-id="56:77"></div>
+   
+    <div class="frame-1-C61RwL" data-id="56:63">
+      <div class="group-1-WzCX2w" data-id="56:64">
+        <div class="logo-2-iBmTg4" data-id="56:65"></div>
+        <div class="ellipse-1-iBmTg4" data-id="56:66"></div>
+      </div>
+      <h1 class="likwidz-WzCX2w" data-id="56:67">LIKWIDZ</h1>
+      <div class="rectangle-2-C61RwL" onclick="Lib.autoanim_redirect('desktop-3,desktop-1%23desktop-4,,ease-in,255.5234432220459;desktop-2,desktop-1%23desktop-3,,ease-in,255.5234432220459;desktop-1,desktop-1%23desktop-2,,ease-in,255.5234432220459', event)" onmouseover="" data-id="55:53"></div>
+      <div class="arrow-1-C61RwL" data-id="55:54"></div>
+      
+    
+          
+<div id="slider">
+  <a href="#" class="control_next">></a>
+  <a href="#" class="control_prev"><</a>
+  
+  <ul>
+    {% for product in products reversed %}
+            <li>
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="likwidz123456-1-zUix{{ forloop.counter }}" data-id="56:85">
+            </li>
+        {% endfor %}
+  </ul>  
+</div> 
+
+      <div class="slider_option">
+        <input type="checkbox" id="checkbox">
+        <label for="checkbox">Autoplay Slider</label>
+      </div> 
+      </div>
+      
+<div class="contained">
+          <h1 class="hd aligment">New arrival</h1>
+          <div class="container inline">
+          <div class="parent-container">
+            {% for product in products reversed  %}
+          <div class="item inline-item">
+            <div class="product-image">
+              <a href="{% url 'product' product.id %}"><img src="{{ product.image.url }}" alt="Product Image"></a>
+            </div>
+            <div class="product-details">
+              <h2 class="title">{{ product.name}}</h2>
+              <p class="price">R{{ product.price}}</p>
+              <div class="buttons">
+                <button  class="add-to-cart"  data-product-url="{% url 'product' product.id %}">View Product</button>
+              </div>
+            </div>
+      
+          </div>
+          {% endfor %} 
+          </div>
+          </div>
+</div> 
+ 
+<div class="contained desktop-1">
+
+<div class="header">Introducing Claws</div>
+<div class="child">
+      <div class="panels">
+        
+        <a class="panel">
+          <div class="panel__content"><span class="claw">JAW CLAWS – ORANGE</span></div>
+        </a>
+        <a class="panel">
+            <div class="panel__content"><span class="claw">BABY CLAWS – BLUE</span></div>
+          </a>
+          <a class="panel">
+            <div class="panel__content"><span class="claw">PANTHER CLAWS – BLACK</span></div>
+          </a>
+          <a class="panel">
+            <div class="panel__content"><span class="claw">TALON CLAWS – RED</span></div>
+          </a>
+          <a class="panel">
+            <div class="panel__content"><span class="claw">TIGER CLAWS – YELLOW</span></div>
+          </a>
+          <a class="panel">
+            <div class="panel__content"><span class="claw">EAGLE CLAWS – BEIGE</span></div>
+          </a>
+      </div>
+      </div>
+    </div>
+      <div class="contained">
+      <div class="panual1">
+        
+      <p class="product-descriptions"> <div class="hd">Drip Claws</div>
+      Drip is about to drop claws a light weight breathable mesh sneakers, designed with an outer sole to grip the hardness of the ACTIVE functionality and beautiful lifestyle transition.
+      The core of the sneaker is functionality.
+      Designed to be lightweight and breathable to offer a long day wear and for lifestyle usage.
+      This is our 1st step into our 1st step into our journey of Active/Lifestyle products, currently known as Athleisure.
+      It's tome to be Cool and Active.</p>    
+      </div>
+</div>
+    </div>
+
+    <div class=" contained slid ">
+      <div class="slide-track">
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0004_ROF_logo.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0003_SOLEMATE_logo.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0001_LIKWIDZ_logo.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0007_bundle.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0007_claws.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0004_ROF_logo.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0003_SOLEMATE_logo.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0001_LIKWIDZ_logo.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0007_bundle.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0007_claws.png" height="100" width="250" alt="" />
+        </div><div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0004_ROF_logo.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0003_SOLEMATE_logo.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0001_LIKWIDZ_logo.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0007_bundle.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="/static/images/branding/Drip_Brands_b_0007_claws.png" height="100" width="250" alt="" />
+        </div>
+      </div>
+    </div>
+  
+<script >
+  
+  jQuery(document).ready(function ($) {
+    
+    $('#checkbox').change(function(){
+      setInterval(function () {
+          moveRight();
+      }, 3000);
+    });
+    
+      var slideCount = $('#slider ul li').length;
+      var slideWidth = $('#slider ul li').width();
+      var slideHeight = $('#slider ul li').height();
+      var sliderUlWidth = slideCount * slideWidth;
+      
+      $('#slider').css({ width: slideWidth, height: slideHeight });
+      
+      $('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+      
+      $('#slider ul li:last-child').prependTo('#slider ul');
+  
+      function moveLeft() {
+          $('#slider ul').animate({
+              left: + slideWidth
+          }, 200, function () {
+              $('#slider ul li:last-child').prependTo('#slider ul');
+              $('#slider ul').css('left', '');
+          });
+      };
+  
+      function moveRight() {
+          $('#slider ul').animate({
+              left: - slideWidth
+          }, 200, function () {
+              $('#slider ul li:first-child').appendTo('#slider ul');
+              $('#slider ul').css('left', '');
+          });
+      };
+  
+      $('a.control_prev').click(function () {
+          moveLeft();
+      });
+  
+      $('a.control_next').click(function () {
+          moveRight();
+      });
+  
+  });
+   </script>
+{% endblock %}

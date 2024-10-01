@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+
+    <section>
+
+      <hgroup>
+          <div class="h2s">Welcome back!</div>
+        <p>Please enter your details to sign into your account</p>
+      </hgroup>
+    
+      <form method = "POST" action="{% url 'login' %}" class = "login">
+        {% csrf_token %}
+          <div class="group log-input">
+            <input type="text" id = "username" name = "username" placeholder = "username">
+          </div>
+    
+          <div class="group log-input">
+              <input type="password" id = "password" name = "password"  placeholder = "Password">
+          </div>
+          <div class="buttons">
+            <button class="add-to-cart">Sign in</button>
+          </div>
+          <p class="message">Not registered? <a href="{% url 'register' %}">Create an account</a></p>
+          
+      </form>
+    
+      
+    
+    </section>
+    </div>
+{% endblock %}
+      
+    

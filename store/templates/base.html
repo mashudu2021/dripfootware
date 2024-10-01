@@ -1,0 +1,87 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drip Footware</title>
+<meta name="description" content="drip shoe store">
+<meta name="author" content="Mashudu  Malukwe">
+<meta name="copyright" content="Mashudu malukwe">
+<meta name="robots" content="index, follow">
+<meta name="csrf-token" content="{% csrf_token %}">
+
+{% load static %}
+<html>
+    <head> 
+    </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+      </script>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+    
+<body style="margin: 0;background: #ffffff;">
+  <div class=" desktop-1" data-id="1:2" data-page="desktop-1" data-screens="desktop-4,desktop-3,desktop-2,desktop-1" style="opacity: 1;">
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+          {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+{% include 'navbar.html'%}
+  {% block content %}
+  {% endblock %}
+ </div>
+  </body>  
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About</h6>
+          <p class="text-justify"><i>INNOVATION & CREATIVITY</i> Drip is a brand dedicated to working with customers to design the future.</p>
+        </div>
+  
+        <div class="col-xs-6 col-md-3">
+          <h6>Menu</h6>
+          <ul class="footer-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'shop' %}">Shop</a></li>
+            <li><a href="{% url 'pre-order' %}">Pre-order</a></li>
+            <li><a href="tracker">Tracker</a></li>
+            <li><a href="about-us">About Us</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-xs-6 col-md-3">
+          <h6>Payment Accepted</h6>
+          <ul class="footer-links">
+            <li><img src="/static/images/card.png" height="52" width="52" alt="Card" /></li>
+            <li><img src="/static/images/visa.png" height="50" width="60" alt="Visa" /></li>
+            <li><img src="/static/images/paypal.png" height="50" width="70" alt="PayPal" /></li>
+            <li><img src="/static/images/shopping.png" height="50" width="70" alt="Shopping" /></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by <a href="#">Drip</a>.</p>
+        </div>
+  
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</html>

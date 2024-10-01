@@ -1,0 +1,461 @@
+<html>
+    <head>
+        <style>
+            *{
+            margin: 0;
+            padding: 0;
+            }
+            body{
+            font-family: sans-serif;
+            }
+            #container{
+            position:relative;
+            width:100%;
+            height: 100%;
+            background: white;
+            display: -webkit-flex; /* Safari */
+            display: flex;
+            -webkit-flex: 1; /* Safari 6.1+ */
+            -ms-flex: 1; /* IE 10 */ 
+            flex: 1;
+            }
+
+            #product{
+            position:relative;
+            display: -webkit-flex; /* Safari */
+            display: flex;
+            flex-wrap: wrap;
+            -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+            -webkit-flex: 1; /* Safari 6.1+ */
+            -ms-flex: 1; /* IE 10 */ 
+            flex: 1;
+            width: 65%;
+            height: 100%;
+            margin: 6px;
+            cursor: ns-resize;
+            }
+
+            .drag{
+            position:absolute;
+            background-color: blue;
+            width:65%;
+            height: 150%;
+            top: -50%;
+            transform: translateY(-50%);
+            }
+
+            .img{
+            
+            width:50%;
+            height:50%;
+            overflow: hidden;
+            padding:5px;
+            box-sizing: border-box;
+            border: 6px solid white;
+            }
+
+            #product img{
+            position: relative;
+            width: 100%;
+            transform: translateX(-50%);
+            left: 50%;
+            }
+
+            #product-info{
+            width: 35%;
+            height: 100%;
+            font-size: 1em;
+            padding: 3%;
+            }
+
+            #info{
+            display:flex;
+            }
+
+            #info div{
+            width: 50%;
+            }
+
+            #info div:last-child{
+            text-align: right;
+            }
+
+            .stock{
+            margin: 15px 0px 15px 0px;
+            font-size: .8em;
+            width: 100%;
+            }
+
+            #button-elements{
+            height: 60px;
+            width: 100%;
+            margin-top: 30px;
+            font-size: 1em;
+            }
+
+            #add-to-cart, #favorite{
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            line-height: 60px;
+            cursor: pointer;
+            }
+
+            #favorite{
+            margin-top: 15px;
+            background-color: white;
+            border: 1px rgba(122,122,122,.5) solid;
+            color: rgba(122,122,122,.5);
+            }
+
+            #favorite:hover{
+            border:1px  solid rgba(122,122,122,.6);
+            color: rgba(122,122,122,.6);
+            
+            }
+
+            i{
+            font-size: 1em !important;
+            vertical-align: middle;
+            }
+
+            #add-to-cart:hover{
+            background-color:rgba(0,0,0,.8);
+            }
+
+            #summary{
+            margin-top: 30px;
+            line-height: 30px;
+            }
+
+            ul{
+            list-style-position: inside;
+            margin-top: 15px;
+            }
+
+            .thumbs{
+            display: -webkit-flex; /* Safari */
+            display: flex;
+            /* Safari 6.1+ */
+            -webkit-flex: 1; /* Safari 6.1+ */
+            -ms-flex: 1; /* IE 10 */ 
+            flex: 1;
+            width:50%;
+            height:50%;
+            cursor: pointer;
+            }
+
+            .thumb{
+            margin-right: 5px;
+            position:relative;
+            background-color:black;
+            }
+
+            .thumbs img{
+            position: relative;
+            width:100%;
+            }
+
+            #size-guide{
+            display: -webkit-flex; /* Safari */
+            display: flex;
+            /* Safari 6.1+ */
+            -webkit-flex: 1; /* Safari 6.1+ */
+            -ms-flex: 1; /* IE 10 */ 
+            flex: 1;
+            width:100%;
+            margin-top:35px;
+            }
+
+            #size-guide > div{
+            width:50%;
+            }
+
+            #size-guide div:last-child{
+            text-align: right;
+            color: #aaa;
+            }
+
+            #sizes{
+            display: -webkit-flex; /* Safari */
+            display: flex;
+            /* Safari 6.1+ */
+            -webkit-flex: 1; /* Safari 6.1+ */
+            -ms-flex: 1; /* IE 10 */ 
+            flex: 1;
+            flex-wrap: wrap;
+            -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+            width: 100%;
+            background-color: yellow;
+            margin-top: 15px;
+            }
+
+            #sizes div{
+            background-color: white;
+            width:48%;
+            box-sizing: border-box;
+            padding: 4%;
+            border-radius: 5px;
+            margin-right: 1%;
+            margin-bottom: 1%;
+            text-align: center;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            }
+
+            /* Small devices (portrait tablets and large phones, 992px and up) */
+            @media only screen and (max-width: 992px) {
+            #product div{
+                width: 100%;
+            }
+            } 
+
+            /*  
+                    * Rating styles
+                    */
+                    .rating {
+                
+                        width: 226px;
+                        margin: 0 auto 1em;
+                        font-size: 15px;
+                        overflow:hidden;
+                    }
+            .rating input {
+            float: right;
+            opacity: 0;
+            position: absolute;
+            }
+                    .rating a,
+                .rating label {
+                        float:right;
+                        color: #aaa;
+                        text-decoration: none;
+                        -webkit-transition: color .4s;
+                        -moz-transition: color .4s;
+                        -o-transition: color .4s;
+                        transition: color .4s;
+                margin-left:4px;
+                    }
+            .rating label:hover ~ label,
+            .rating input:focus ~ label,
+            .rating label:hover,
+                    .rating a:hover,
+                    .rating a:hover ~ a,
+                    .rating a:focus,
+                    .rating a:focus ~ a		{
+                        color: orange;
+                        cursor: pointer;
+                    }
+                    .rating2 {
+                        direction: ltr;
+                    }
+                    .rating2 a {
+                        float:none
+                    }
+                 </style>
+                </head>  
+<body>  
+<div id="container"> <!--{{product}}-->
+    <div class="drag"></div>
+    <div id="product">
+      <div class="img" v-for="images in image"><img :src="images"></div>
+    </div>
+    <div id="product-info">
+      <div id="info"><div>{{product_type}}</div><div><b>{{price}}</b></div></div>
+      <h1>{{product}}</h1>
+      
+      <div class="rating rating2"><!--
+          --><a href="#5" title="Give 5 stars">★</a><!--
+          --><a href="#4" title="Give 4 stars">★</a><!--
+          --><a href="#3" title="Give 3 stars">★</a><!--
+          --><a href="#2" title="Give 2 stars">★</a><!--
+          --><a href="#1" title="Give 1 star">★</a>
+        </div>
+      
+      <div class="stock" v-if="inventory > 10">In-Stock</div>
+      <div class="stock" v-else-if="inventory < 10 && inventory > 0"><font color="red">avialabe</font>     </div>
+      <div class="stock" v-else>Out-of-Stock</div>
+      <div class="thumbs">
+        <div class="thumb" v-for="thumb in thumbs"><img :src="thumb" width="100%" height="100%"></div>
+      </div>
+      
+      <div id="size-guide">
+        <div id="size"><p>Select Size</p></div>
+        <div id="guide"><p>Size Guide</p></div>
+      </div>
+      
+      <div id="sizes">
+        <div v-for="sizes in variants">{{sizes.size}}</div>
+      </div>
+      
+      <div id="button-elements">
+        <div id="add-to-cart">Add To Cart</div>
+        <div id="favorite">Favorite <i class="material-icons">favorite</i></div>
+      </div>
+      
+      <div id="summary">
+        <p>Engineered for the strongest player on the planet, the LeBron XVI Remix delivers a powerful combination of support, impact cushioning and instant responsiveness. The tongue and lacing allow for easy entry and a custom fit, so you can lock in when needed and wear loose when you want.</p>
+        <ul>
+          <li>Shown: White/Black/Comet Red</li>
+          <li>Style: CD2451-101</li>
+        </ul>
+      </div>
+      
+  <!--     <div v-for="variant in variants" :key="variant.variantId"><p>{{variant.size}}</p></div>
+      
+      <ul><li v-for="detail in details">{{detail}}</li></ul>
+       <div id="button-elements"></div> -->
+      
+    </div>
+  </div>
+  <script>var black_shoe = ["https://bit.ly/2P3aXno",
+    "https://bit.ly/2HdaoRv",
+    "https://bit.ly/2KSn0OX",
+   "https://bit.ly/31OYnt8"];
+
+var white_shoe = ["https://bit.ly/2ZdHTt8",
+    "https://bit.ly/2PcQuwa",
+    "https://bit.ly/2KECQha",
+    "https://bit.ly/2MoYBnr"];
+
+var white_shoe_variant = [
+{
+variantId: "White",
+size: "M 3.5 / W 5",
+instock: true
+},
+{
+variantId: "White",
+size: "M 4 / W 5.5",
+instock: false
+},
+{
+variantId: "White",
+size: "M 4.5 / W 6",
+instock: false
+},
+{
+variantId: "White",
+size: "M 7.5 / W 9",
+instock: true
+},
+{
+variantId: "White",
+size: "M 11.5 / W 13",
+instock: true
+},
+{
+variantId: "White",
+size: "M 12 / W 13.5",
+instock: false
+}
+];
+
+var black_shoe_variant = [
+{
+variantId: "Black",
+size: "M 9 / W 10.5",
+instock: true
+},
+{
+variantId: "Black",
+size: "M 12 / W 13.5",
+instock: false
+},
+{
+variantId: "Black",
+size: "M 14 / W 15.5",
+instock: true
+}
+];
+
+var view = new Vue({
+el: "#container",
+data: {
+product: "Nike Air Force 1 '07",
+product_type: "Basketball Shoe",
+price: "$119.97",
+image: black_shoe,
+inventory: 2,
+thumbs:["https://bit.ly/2P3aXno",
+    "https://bit.ly/2P17SEj"],
+variants:black_shoe_variant,
+details: ["9", "9.5", "10", "10.5"]
+}
+})
+
+order();
+
+/*** Thumbnails ***/
+var thumb_1 = $(".thumbs div:first-child img");
+var thumb_2 = $(".thumbs div:last-child img");
+TweenMax.set(thumb_1, {autoAlpha:.85});
+
+$(thumb_2).parent().click(function() {
+TweenMax.set(thumb_1, {autoAlpha:1});
+TweenMax.set(thumb_2, {autoAlpha:.85});
+view.image = white_shoe;
+view.variants = white_shoe_variant;
+
+view.$nextTick(() => {
+order();
+});
+//order();
+});
+
+$(thumb_1).parent().click(function() {
+TweenMax.set(thumb_1, {autoAlpha:.85});
+TweenMax.set(thumb_2, {autoAlpha:1});
+view.image = black_shoe;
+view.variants = black_shoe_variant;
+
+view.$nextTick(() => {
+order();
+});
+});
+
+$("#sizes").on("click",function (event) {
+
+
+
+if($(event.target).css("background-color") !== "rgba(122, 122, 122, 0.3)"){
+order();
+TweenMax.set($(event.target)[0], {backgroundColor: "black", color: "white"});
+}else{
+console.log("gray");
+}
+
+});
+
+function order(){
+
+for(var i=0; i< view.variants.length; i++){
+
+if(view.variants[i].instock == false){
+TweenMax.set("#sizes div:nth-child(" + (i + 1) +")", { backgroundColor:"rgba(122,122,122,.3) !important", color:"rgba(122,122,122,.9)"});
+
+console.log("#sizes div:nth-child(" + (i + 1) +")");
+console.log(view.variants[i].instock);
+}else{
+TweenMax.set("#sizes div:nth-child(" + (i + 1) +")", { backgroundColor:"white", color:"black"});
+}
+}
+}
+
+
+Draggable.create("#product",{
+type:"y",
+throwProps:true,
+bounds: $(".drag")
+});
+
+
+var tl = new TimelineMax();
+
+tl.append(TweenMax.to($("#product"), 2, {top:"-430", delay: 1,  ease:Strong.easeInOut/* , onComplete: function(){tl.reverse();} */}));
+tl.append(TweenMax.to($("#product"), 2, {top:"0", ease:Strong.easeInOut/* , onComplete: function(){tl.reverse();} */}));</script>
+  </body>
+</html>

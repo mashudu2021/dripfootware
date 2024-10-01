@@ -1,0 +1,1769 @@
+<html>
+    <head><style type="text/css">.turbo-progress-bar {
+        position: fixed;
+        display: block;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: #0076ff;
+        z-index: 9999;
+        transition:
+          width 300ms ease-out,
+          opacity 150ms 150ms ease-in;
+        transform: translate3d(0, 0, 0);
+      }
+      </style><style id="st_globalStyles">
+      /* SCROLLBAR */
+      
+      [dark-scroll]::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+      
+      [dark-scroll]::-webkit-scrollbar-track-piece {
+        background-color: #2b2b2b;
+        border: 1px solid #1d1d1d;
+      }
+      
+      [dark-scroll]::-webkit-scrollbar-thumb {
+        height: 10px;
+        background-color: #4d4d4d;
+      }
+      [dark-scroll]::-webkit-scrollbar-thumb:hover {
+        background-color: #5a5a5a;
+      }
+      
+      /* LOAD PROGRESS */
+      
+      .turbolinks-progress-bar {
+        height: 3px;
+        background-color: #ff6250;
+      }
+      
+      /* GROUPING */
+      
+      [data-id].ui-selecting {
+        box-shadow: inset 0 0 0 1px #4285f4 !important;
+      }
+      [data-id].ui-selected {
+        box-shadow: inset 0 0 0 1px #4285f4 !important;
+      }
+      
+      /* CURSOR */
+      
+      body[mode='comments'] * {
+        cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik00LjkxNjQ4IDIzLjQxMDlDNS40OTE1MyAyMi45ODg3IDUuOTMxNzkgMjIuMzkzNSA2LjIzMjggMjEuNjQwN0M0Ljc5MDY5IDE5LjczODMgNCAxNy4zOTMzIDQgMTQuOTk3NUM0IDguOTM0MSA4LjkzMjgyIDQgMTUuMDAyMiA0QzIxLjA3MTcgNCAyNiA4LjkzOTE5IDI2IDE1LjAwMjVDMjYgMjEuMDY1OSAyMS4wNjcyIDI2IDE0Ljk5NzggMjZDMTIuOTg5NiAyNiAxMS4wMzUzIDI1LjQ1NTcgOS4zMjM2NyAyNC40MjMxQzguNDI5NjUgMjQuOTU3MiA3LjQxNDM0IDI1LjIyNjggNi4zMDAxOCAyNS4yMjY4QzUuOTU0MjYgMjUuMjI2OCA1LjU5OTM1IDI1LjIwMTQgNS4yNTM0MiAyNS4xNDU0QzQuOTAzIDI1LjA4OTUgNC42Mjg5NiAyNC44MDQ2IDQuNTUyNTggMjQuNDE4QzQuNDc2MjEgMjQuMDI2NCA0LjYxOTk3IDIzLjYyOTYgNC45MTY0OCAyMy40MTA5WiIgZmlsbD0iI0ZGNjI1MCIvPgo8L3N2Zz4K')
+            0 24,
+          auto !important;
+      }
+      
+      body[mode='code'] [data-id]:not(.hidden) {
+        cursor: default;
+      }
+      
+      /* default node state */
+      
+      body[mode='code'] [data-id]:not(.hidden), body[mode='comments'] [data-id]:not(.hidden) {
+        pointer-events: all;
+      }
+      
+      /* is_image */
+      
+      body[mode='code'] [data-id].is_image [data-id], body[mode='comments'] [data-id].is_image [data-id] {
+        pointer-events: none !important;
+      }
+      
+      /* without a data-id or ignored */
+      
+      [data-id].ignore,body[mode='code'] *:not([data-id]) {
+        pointer-events: none !important;
+      }
+      /* disable transforms for ignored elements */
+      
+      
+      body[mode='code'] [data-id]:hover{
+        transform: none !important;
+      }
+      
+      div[class^='i-o-sparts']{
+        pointer-events: none !important;
+      }
+      
+      </style><meta charset="utf-8"><meta name="viewport" content="width=1440, maximum-scale=1.0"><link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png"><meta name="og:type" content="website"><meta name="twitter:card" content="photo"><script id="anima-hotspots-script" src="hotspots.js"></script><style id="hotspots-styles">
+          .hotspot {
+            position: absolute;
+            border: 1px solid #2a9fd8;
+            background: rgba(0, 173, 255, 0.54);
+            opacity: 0;
+            z-index: -1;
+            pointer-events:none;
+          }
+        </style><style id="hide-styles">
+          .hotspot {
+            display:none !important;
+          }
+        </style><script id="s_turbo" src="https://animaapp.s3.amazonaws.com/static/turbo.es2017-umd.js"></script><script id="anima-overrides-script" src="overrides.js"></script><script src="https://animaapp.s3.amazonaws.com/js/timeline.js"></script><script id="anime-js-script" src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js" integrity="sha256-98Q574VkbV+PkxXCKSgL6jVq9mrVbS7uCdA+vt0sLS8=" crossorigin="anonymous"></script><script id="imgloaded-js-script" src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script><style>
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+      
+      @import url("https://fonts.googleapis.com/css?family=Mitr:400|Bebas+Neue:400");
+      
+      /* The following line is used to measure usage of this code. You can remove it if you want. */
+      @import url("https://px.animaapp.com/65c5e72ce1d47795da781ab8.65c5e72de1d47795da781abb.fK9GuVo.hch.png");
+      
+      
+      .screen textarea:focus,
+      .screen input:focus {
+        outline: none;
+      }
+      
+      .screen * {
+        -webkit-font-smoothing: antialiased;
+        box-sizing: border-box;
+      }
+      
+      .screen div {
+        -webkit-text-size-adjust: none;
+      }
+      
+      .component-wrapper a {
+        display: contents;
+        pointer-events: auto;
+        text-decoration: none;
+      }
+      
+      .component-wrapper * {
+        -webkit-font-smoothing: antialiased;
+        box-sizing: border-box;
+        pointer-events: none;
+      }
+      
+      .component-wrapper a *,
+      .component-wrapper input,
+      .component-wrapper video,
+      .component-wrapper iframe {
+        pointer-events: auto;
+      }
+      
+      .component-wrapper.not-ready,
+      .component-wrapper.not-ready * {
+        visibility: hidden !important;
+      }
+      
+      .screen a {
+        display: contents;
+        text-decoration: none;
+      }
+      
+      .full-width-a {
+        width: 100%;
+      }
+      
+      .full-height-a {
+        height: 100%;
+      }
+      
+      .container-center-vertical {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        pointer-events: none;
+      }
+      
+      .container-center-vertical > * {
+        flex-shrink: 0;
+        pointer-events: auto;
+      }
+      
+      .container-center-horizontal {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        pointer-events: none;
+        width: 100%;
+      }
+      
+      .container-center-horizontal > * {
+        flex-shrink: 0;
+        pointer-events: auto;
+      }
+      
+      .auto-animated div {
+        --z-index: -1;
+        opacity: 0;
+        position: absolute;
+      }
+      
+      .auto-animated input {
+        --z-index: -1;
+        opacity: 0;
+        position: absolute;
+      }
+      
+      .auto-animated .container-center-vertical,
+      .auto-animated .container-center-horizontal {
+        opacity: 1;
+      }
+      
+      .overlay-base {
+        display: none;
+        height: 100%;
+        opacity: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+      
+      .overlay-base.animate-appear {
+        align-items: center;
+        animation: reveal 0.3s ease-in-out 1 normal forwards;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        opacity: 0;
+      }
+      
+      .overlay-base.animate-disappear {
+        animation: reveal 0.3s ease-in-out 1 reverse forwards;
+        display: block;
+        opacity: 1;
+        pointer-events: none;
+      }
+      
+      .overlay-base.animate-disappear * {
+        pointer-events: none;
+      }
+      
+      @keyframes reveal {
+        from { opacity: 0 }
+       to { opacity: 1 }
+      }
+      
+      .animate-nodelay {
+        animation-delay: 0s;
+      }
+      
+      .align-self-flex-start {
+        align-self: flex-start;
+      }
+      
+      .align-self-flex-end {
+        align-self: flex-end;
+      }
+      
+      .align-self-flex-center {
+        align-self: flex-center;
+      }
+      
+      .valign-text-middle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .valign-text-bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      
+      input:focus {
+        outline: none;
+      }
+      
+      .listeners-active,
+      .listeners-active * {
+        pointer-events: auto;
+      }
+      
+      .hidden,
+      .hidden * {
+        pointer-events: none;
+        visibility: hidden;
+      }
+      
+      .smart-layers-pointers,
+      .smart-layers-pointers * {
+        pointer-events: auto;
+        visibility: visible;
+      }
+      
+      .listeners-active-click,
+      .listeners-active-click * {
+        cursor: pointer;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      :root { 
+       
+       
+      }
+      :root {
+      }
+      
+      
+      /* screen - desktop-4 */
+      
+      .desktop-4 {
+        background-color: #ffffff;
+        margin: 0px;
+        min-height: 1024px;
+        min-width: 1440px;
+        opacity: 1;
+        overflow: hidden;
+        overflow-x: hidden;
+        position: relative;
+        width: 100%;
+      }
+      
+      .desktop-4 .frame-1-C61RwL {
+        --z-index: 0;
+        background-color: #d2d2d2;
+        border-radius: 10px;
+        box-shadow: 11px 11px 35px #525655a8;
+        height: 743px;
+        left: 73px;
+        opacity: 1;
+        position: absolute;
+        top: 188px;
+        width: 1293px;
+      }
+      
+      .desktop-4 .group-1-WzCX2w {
+        --z-index: 0;
+        background-color: transparent;
+        height: 905px;
+        left: 229px;
+        opacity: 1;
+        position: absolute;
+        top: -133px;
+        width: 836px;
+      }
+      
+      .desktop-4 .logo-2-iBmTg4 {
+        --z-index: 0;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/logo-1.png);
+        background-size: 100% 100%;
+        height: 905px;
+        left: 0px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 0px;
+        width: 836px;
+      }
+      
+      .desktop-4 .ellipse-1-iBmTg4 {
+        --z-index: 1;
+        background: radial-gradient(50% 50% at 50% 50%, rgb(93.00000205636024, 98.00000175833702, 97.00000181794167) 0%, rgba(93.00000205636024, 98.00000175833702, 97.00000181794167, 0) 100%);
+        background-color: transparent;
+        border-radius: 260.5px/14.5px;
+        height: 29px;
+        left: 157px;
+        opacity: 1;
+        position: absolute;
+        top: 795px;
+        width: 521px;
+      }
+      
+      .desktop-4 .likwidz-WzCX2w {
+        --z-index: 1;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Mitr', Helvetica;
+        font-size: 93px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 69px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 213px;
+        width: 386px;
+      }
+      
+      .desktop-4 .search-1-1-C61RwL {
+        --z-index: 1;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/search--1--1.png);
+        background-size: 100% 100%;
+        height: 47px;
+        left: 1210px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 62px;
+        width: 46px;
+      }
+      
+      .desktop-4 .shopping-cart-1-1-C61RwL {
+        --z-index: 2;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/shopping-cart--1--1.png);
+        background-size: 100% 100%;
+        height: 47px;
+        left: 1268px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 62px;
+        width: 44px;
+      }
+      
+      .desktop-4 .user-1-C61RwL {
+        --z-index: 3;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/user-1.png);
+        background-size: 100% 100%;
+        height: 47px;
+        left: 1320px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 62px;
+        width: 46px;
+      }
+      
+      .desktop-4 .logo-1-C61RwL {
+        --z-index: 4;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/logo-1.png);
+        background-size: 100% 100%;
+        height: 164px;
+        left: 26px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 3px;
+        width: 177px;
+      }
+      
+      .desktop-4 .home-C61RwL {
+        --z-index: 5;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 391px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 105px;
+      }
+      
+      .desktop-4 .shop-C61RwL {
+        --z-index: 6;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 508px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 105px;
+      }
+      
+      .desktop-4 .pre-order-C61RwL {
+        --z-index: 7;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 613px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 189px;
+      }
+      
+      .desktop-4 .tracker-C61RwL {
+        --z-index: 8;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 802px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 134px;
+      }
+      
+      .desktop-4 .about-us-C61RwL {
+        --z-index: 9;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 966px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 146px;
+      }
+      
+      .desktop-4 .rectangle-1-C61RwL {
+        --z-index: 10;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/rectangle-1.png);
+        background-size: 100% 100%;
+        cursor: pointer;
+        height: 44px;
+        left: 622px;
+        opacity: 1;
+        position: absolute;
+        top: 130px;
+        width: 196px;
+      }
+      
+      .desktop-4 .arrow-2-C61RwL {
+        --z-index: 11;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5ebab90bc759cfdc5d97e/img/arrow-2-5@2x.png);
+        background-size: 100% 100%;
+        height: 17px;
+        left: 656px;
+        opacity: 1;
+        position: absolute;
+        top: 139px;
+        width: 128px;
+      }
+      
+      .desktop-4 .group-2-C61RwL {
+        --z-index: 12;
+        background-color: transparent;
+        height: 1593px;
+        left: 492px;
+        opacity: 1;
+        position: absolute;
+        top: -1px;
+        transform: rotate(89.89deg);
+        width: 1573px;
+      }
+      
+      .desktop-4 .likwidz123-457-zUixHA {
+        --z-index: 0;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz123-457-3.png);
+        background-size: 100% 100%;
+        height: 159px;
+        left: 918px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 575px;
+        transform: rotate(-89.89deg);
+        width: 38px;
+      }
+      
+      .desktop-4 .likwidz1-23458-zUixHA {
+        --z-index: 1;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz1-23458-3.png);
+        background-size: 100% 100%;
+        height: 93px;
+        left: 632px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 1129px;
+        transform: rotate(-89.89deg);
+        width: 674px;
+      }
+      
+      .desktop-4 .likwidz12-3458-zUixHA {
+        --z-index: 2;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz12-3458-3.png);
+        background-size: 100% 100%;
+        height: 846px;
+        left: 44px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 699px;
+        transform: rotate(-89.89deg);
+        width: 942px;
+      }
+      
+      .desktop-4 .likwidz123456-1-zUixHA {
+        --z-index: 3;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz123456-1-3.png);
+        background-size: 100% 100%;
+        height: 651px;
+        left: calc(50.00% - 491px);
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 339px;
+        transform: rotate(-89.89deg);
+        width: 60px;
+      }
+      /* screen - desktop-3 */
+      
+      .desktop-3 {
+        background-color: #ffffff;
+        margin: 0px;
+        min-height: 1024px;
+        min-width: 1440px;
+        opacity: 1;
+        overflow: hidden;
+        overflow-x: hidden;
+        position: relative;
+        width: 100%;
+      }
+      
+      .desktop-3 .frame-1-C61RwL {
+        --z-index: 0;
+        background-color: #d2d2d2;
+        border-radius: 10px;
+        box-shadow: 11px 11px 35px #525655a8;
+        height: 743px;
+        left: 73px;
+        opacity: 1;
+        position: absolute;
+        top: 188px;
+        width: 1293px;
+      }
+      
+      .desktop-3 .group-1-WzCX2w {
+        --z-index: 0;
+        background-color: transparent;
+        height: 905px;
+        left: 229px;
+        opacity: 1;
+        position: absolute;
+        top: -133px;
+        width: 836px;
+      }
+      
+      .desktop-3 .logo-2-iBmTg4 {
+        --z-index: 0;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/logo-1.png);
+        background-size: 100% 100%;
+        height: 905px;
+        left: 0px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 0px;
+        width: 836px;
+      }
+      
+      .desktop-3 .ellipse-1-iBmTg4 {
+        --z-index: 1;
+        background: radial-gradient(50% 50% at 50% 50%, rgb(93.00000205636024, 98.00000175833702, 97.00000181794167) 0%, rgba(93.00000205636024, 98.00000175833702, 97.00000181794167, 0) 100%);
+        background-color: transparent;
+        border-radius: 260.5px/14.5px;
+        height: 29px;
+        left: 157px;
+        opacity: 1;
+        position: absolute;
+        top: 795px;
+        width: 521px;
+      }
+      
+      .desktop-3 .likwidz-WzCX2w {
+        --z-index: 1;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Mitr', Helvetica;
+        font-size: 93px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 69px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 213px;
+        width: 386px;
+      }
+      
+      .desktop-3 .search-1-1-C61RwL {
+        --z-index: 1;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/search--1--1.png);
+        background-size: 100% 100%;
+        height: 47px;
+        left: 1210px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 62px;
+        width: 46px;
+      }
+      
+      .desktop-3 .shopping-cart-1-1-C61RwL {
+        --z-index: 2;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/shopping-cart--1--1.png);
+        background-size: 100% 100%;
+        height: 47px;
+        left: 1268px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 62px;
+        width: 44px;
+      }
+      
+      .desktop-3 .user-1-C61RwL {
+        --z-index: 3;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/user-1.png);
+        background-size: 100% 100%;
+        height: 47px;
+        left: 1320px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 62px;
+        width: 46px;
+      }
+      
+      .desktop-3 .logo-1-C61RwL {
+        --z-index: 4;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/logo-1.png);
+        background-size: 100% 100%;
+        height: 164px;
+        left: 26px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 3px;
+        width: 177px;
+      }
+      
+      .desktop-3 .home-C61RwL {
+        --z-index: 5;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 391px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 105px;
+      }
+      
+      .desktop-3 .shop-C61RwL {
+        --z-index: 6;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 508px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 105px;
+      }
+      
+      .desktop-3 .pre-order-C61RwL {
+        --z-index: 7;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 613px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 189px;
+      }
+      
+      .desktop-3 .tracker-C61RwL {
+        --z-index: 8;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 802px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 134px;
+      }
+      
+      .desktop-3 .about-us-C61RwL {
+        --z-index: 9;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 966px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 146px;
+      }
+      
+      .desktop-3 .rectangle-1-C61RwL {
+        --z-index: 10;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/rectangle-1.png);
+        background-size: 100% 100%;
+        cursor: pointer;
+        height: 44px;
+        left: 500px;
+        opacity: 1;
+        position: absolute;
+        top: 131px;
+        width: 196px;
+      }
+      
+      .desktop-3 .rectangle-2-C61RwL {
+        --z-index: 11;
+        background-color: #000000;
+        cursor: pointer;
+        height: 36px;
+        left: 748px;
+        opacity: 1;
+        position: absolute;
+        top: 131px;
+        width: 188px;
+      }
+      
+      .desktop-3 .arrow-1-C61RwL {
+        --z-index: 12;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5ebab90bc759cfdc5d97e/img/arrow-1-3@2x.png);
+        background-size: 100% 100%;
+        height: 17px;
+        left: 781px;
+        opacity: 1;
+        position: absolute;
+        top: 139px;
+        width: 128px;
+      }
+      
+      .desktop-3 .arrow-2-C61RwL {
+        --z-index: 13;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5ebab90bc759cfdc5d97e/img/arrow-2-4@2x.png);
+        background-size: 100% 100%;
+        height: 17px;
+        left: 535px;
+        opacity: 1;
+        position: absolute;
+        top: 139px;
+        width: 128px;
+      }
+      
+      .desktop-3 .group-2-C61RwL {
+        --z-index: 14;
+        background-color: transparent;
+        height: 1613px;
+        left: 483px;
+        opacity: 1;
+        position: absolute;
+        top: -35px;
+        transform: rotate(179.75deg);
+        width: 1549px;
+      }
+      
+      .desktop-3 .likwidz123-457-zUixHA {
+        --z-index: 0;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz123-457-2.png);
+        background-size: 100% 100%;
+        height: 95px;
+        left: 857px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 556px;
+        transform: rotate(-179.75deg);
+        width: 674px;
+      }
+      
+      .desktop-3 .likwidz1-23458-zUixHA {
+        --z-index: 1;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz1-23458-2.png);
+        background-size: 100% 100%;
+        height: 846px;
+        left: 606px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 633px;
+        transform: rotate(-179.75deg);
+        width: 942px;
+      }
+      
+      .desktop-3 .likwidz12-3458-zUixHA {
+        --z-index: 2;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz12-3458-2.png);
+        background-size: 100% 100%;
+        height: 614px;
+        left: 589px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 963px;
+        transform: rotate(-179.75deg);
+        width: 150px;
+      }
+      
+      .desktop-3 .likwidz123456-1-zUixHA {
+        --z-index: 3;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz123456-1-2.png);
+        background-size: 100% 100%;
+        height: 119px;
+        left: calc(50.00% - 182px);
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 553px;
+        transform: rotate(-179.75deg);
+        width: 80px;
+      }
+      /* screen - desktop-2 */
+      
+      .desktop-2 {
+        background-color: #ffffff;
+        margin: 0px;
+        min-height: 1024px;
+        min-width: 1440px;
+        opacity: 1;
+        overflow: hidden;
+        overflow-x: hidden;
+        position: relative;
+        width: 100%;
+      }
+      
+      .desktop-2 .frame-1-C61RwL {
+        --z-index: 0;
+        background-color: #d2d2d2;
+        border-radius: 10px;
+        box-shadow: 11px 11px 35px #525655a8;
+        height: 743px;
+        left: 73px;
+        opacity: 1;
+        position: absolute;
+        top: 188px;
+        width: 1293px;
+      }
+      
+      .desktop-2 .group-1-WzCX2w {
+        --z-index: 0;
+        background-color: transparent;
+        height: 905px;
+        left: 229px;
+        opacity: 1;
+        position: absolute;
+        top: -133px;
+        width: 836px;
+      }
+      
+      .desktop-2 .logo-2-iBmTg4 {
+        --z-index: 0;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/logo-1.png);
+        background-size: 100% 100%;
+        height: 905px;
+        left: 0px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 0px;
+        width: 836px;
+      }
+      
+      .desktop-2 .ellipse-1-iBmTg4 {
+        --z-index: 1;
+        background: radial-gradient(50% 50% at 50% 50%, rgb(93.00000205636024, 98.00000175833702, 97.00000181794167) 0%, rgba(93.00000205636024, 98.00000175833702, 97.00000181794167, 0) 100%);
+        background-color: transparent;
+        border-radius: 260.5px/14.5px;
+        height: 29px;
+        left: 157px;
+        opacity: 1;
+        position: absolute;
+        top: 795px;
+        width: 521px;
+      }
+      
+      .desktop-2 .likwidz-WzCX2w {
+        --z-index: 1;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Mitr', Helvetica;
+        font-size: 93px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 69px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 213px;
+        width: 386px;
+      }
+      
+      .desktop-2 .search-1-1-C61RwL {
+        --z-index: 1;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/search--1--1.png);
+        background-size: 100% 100%;
+        height: 47px;
+        left: 1210px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 62px;
+        width: 46px;
+      }
+      
+      .desktop-2 .shopping-cart-1-1-C61RwL {
+        --z-index: 2;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/shopping-cart--1--1.png);
+        background-size: 100% 100%;
+        height: 47px;
+        left: 1268px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 62px;
+        width: 44px;
+      }
+      
+      .desktop-2 .user-1-C61RwL {
+        --z-index: 3;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/user-1.png);
+        background-size: 100% 100%;
+        height: 47px;
+        left: 1320px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 62px;
+        width: 46px;
+      }
+      
+      .desktop-2 .logo-1-C61RwL {
+        --z-index: 4;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/logo-1.png);
+        background-size: 100% 100%;
+        height: 164px;
+        left: 26px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 3px;
+        width: 177px;
+      }
+      
+      .desktop-2 .home-C61RwL {
+        --z-index: 5;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 391px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 105px;
+      }
+      
+      .desktop-2 .shop-C61RwL {
+        --z-index: 6;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 508px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 105px;
+      }
+      
+      .desktop-2 .pre-order-C61RwL {
+        --z-index: 7;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 613px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 189px;
+      }
+      
+      .desktop-2 .tracker-C61RwL {
+        --z-index: 8;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 802px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 134px;
+      }
+      
+      .desktop-2 .about-us-C61RwL {
+        --z-index: 9;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 966px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 146px;
+      }
+      
+      .desktop-2 .rectangle-1-C61RwL {
+        --z-index: 10;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/rectangle-1.png);
+        background-size: 100% 100%;
+        cursor: pointer;
+        height: 44px;
+        left: 500px;
+        opacity: 1;
+        position: absolute;
+        top: 131px;
+        width: 196px;
+      }
+      
+      .desktop-2 .rectangle-2-C61RwL {
+        --z-index: 11;
+        background-color: #000000;
+        cursor: pointer;
+        height: 36px;
+        left: 748px;
+        opacity: 1;
+        position: absolute;
+        top: 131px;
+        width: 188px;
+      }
+      
+      .desktop-2 .arrow-2-C61RwL {
+        --z-index: 12;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5ebab90bc759cfdc5d97e/img/arrow-2-3@2x.png);
+        background-size: 100% 100%;
+        height: 17px;
+        left: 535px;
+        opacity: 1;
+        position: absolute;
+        top: 139px;
+        width: 128px;
+      }
+      
+      .desktop-2 .arrow-3-C61RwL {
+        --z-index: 13;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5ebab90bc759cfdc5d97e/img/arrow-3-1@2x.png);
+        background-size: 100% 100%;
+        height: 17px;
+        left: 781px;
+        opacity: 1;
+        position: absolute;
+        top: 139px;
+        width: 128px;
+      }
+      
+      .desktop-2 .group-2-C61RwL {
+        --z-index: 14;
+        background-color: transparent;
+        height: 1545px;
+        left: 489px;
+        opacity: 1;
+        position: absolute;
+        top: 46px;
+        transform: rotate(-90deg);
+        width: 1532px;
+      }
+      
+      .desktop-2 .likwidz123-457-zUixHA {
+        --z-index: 0;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz123-457.png);
+        background-size: 100% 100%;
+        height: 846px;
+        left: 590px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 48px;
+        transform: rotate(90deg);
+        width: 942px;
+      }
+      
+      .desktop-2 .likwidz1-23458-zUixHA {
+        --z-index: 1;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz1-23458.png);
+        background-size: 100% 100%;
+        height: 669px;
+        left: 1123px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 549px;
+        transform: rotate(90deg);
+        width: 150px;
+      }
+      
+      .desktop-2 .likwidz12-3458-zUixHA {
+        --z-index: 2;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz12-3458.png);
+        background-size: 100% 100%;
+        height: 394px;
+        left: 715px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 718px;
+        transform: rotate(90deg);
+        width: 86px;
+      }
+      
+      .desktop-2 .likwidz123456-1-zUixHA {
+        --z-index: 3;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz123456-1.png);
+        background-size: 100% 100%;
+        height: 90px;
+        left: calc(50.00% - 497px);
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 314px;
+        transform: rotate(90deg);
+        width: 674px;
+      }
+      /* screen - desktop-1 */
+      
+      .desktop-1 {
+        background-color: #ffffff;
+        margin: 0px;
+        min-height: 1024px;
+        min-width: 1440px;
+        opacity: 1;
+        overflow: hidden;
+        overflow-x: hidden;
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        margin: auto;
+      }
+      
+      .desktop-1 .frame-1-C61RwL {
+        --z-index: 0;
+        background-color: #d2d2d2;
+        border-radius: 10px;
+        box-shadow: 11px 11px 35px #525655a8;
+        height: 743px;
+        left: 73px;
+        opacity: 1;
+        position: absolute;
+        top: 188px;
+        width: 1293px;
+      }
+      
+      .desktop-1 .group-1-WzCX2w {
+        --z-index: 0;
+        background-color: transparent;
+        height: 905px;
+        left: 229px;
+        opacity: 1;
+        position: absolute;
+        top: -133px;
+        width: 836px;
+      }
+      
+      .desktop-1 .logo-2-iBmTg4 {
+        --z-index: 0;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/logo-1.png);
+        background-size: 100% 100%;
+        height: 905px;
+        left: 0px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 0px;
+        width: 836px;
+      }
+      
+      .desktop-1 .ellipse-1-iBmTg4 {
+        --z-index: 1;
+        background: radial-gradient(50% 50% at 50% 50%, rgb(93.00000205636024, 98.00000175833702, 97.00000181794167) 0%, rgba(93.00000205636024, 98.00000175833702, 97.00000181794167, 0) 100%);
+        background-color: transparent;
+        border-radius: 260.5px/14.5px;
+        height: 29px;
+        left: 157px;
+        opacity: 1;
+        position: absolute;
+        top: 795px;
+        width: 521px;
+      }
+      
+      .desktop-1 .likwidz-WzCX2w {
+        --z-index: 1;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Mitr', Helvetica;
+        font-size: 93px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 69px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 213px;
+        width: 386px;
+      }
+      
+      .desktop-1 .search-1-1-C61RwL {
+        --z-index: 1;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/search--1--1.png);
+        background-size: 100% 100%;
+        height: 47px;
+        left: 1210px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 62px;
+        width: 46px;
+      }
+      
+      .desktop-1 .shopping-cart-1-1-C61RwL {
+        --z-index: 2;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/shopping-cart--1--1.png);
+        background-size: 100% 100%;
+        height: 47px;
+        left: 1268px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 62px;
+        width: 44px;
+      }
+      
+      .desktop-1 .user-1-C61RwL {
+        --z-index: 3;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/user-1.png);
+        background-size: 100% 100%;
+        height: 47px;
+        left: 1320px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 62px;
+        width: 46px;
+      }
+      
+      .desktop-1 .logo-1-C61RwL {
+        --z-index: 4;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/logo-1.png);
+        background-size: 100% 100%;
+        height: 164px;
+        left: 26px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 3px;
+        width: 177px;
+      }
+      
+      .desktop-1 .home-C61RwL {
+        --z-index: 5;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 391px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 105px;
+      }
+      
+      .desktop-1 .home-C61RwL:hover{
+        box-shadow: inset 100px 0 0 0 #ffffff;
+        color: #cc710f;
+      }
+      .desktop-1 .shop-C61RwL {
+        --z-index: 6;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 508px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 105px;
+      }
+
+      .desktop-1 .shop-C61RwL:hover{
+        box-shadow: inset 100px 0 0 0 #ffffff;
+        color: #cc710f;
+      }      
+      
+      .desktop-1 .pre-order-C61RwL {
+        --z-index: 7;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 613px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 189px;
+      }
+      
+      .desktop-1 .pre-order-C61RwL:hover{
+        box-shadow: inset 100px 0 0 0 #ffffff;
+        color: #cc710f;
+      } 
+
+      .desktop-1 .tracker-C61RwL {
+        --z-index: 8;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 802px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 134px;
+      }
+
+      .desktop-1 .tracker-C61RwL:hover{
+        box-shadow: inset 100px 0 0 0 #ffffff;
+        color: #cc710f;
+      } 
+      
+      .desktop-1 .about-us-C61RwL {
+        --z-index: 9;
+        background-color: transparent;
+        color: #000000;
+        font-family: 'Bebas Neue', Helvetica;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 400;
+        height: auto;
+        left: 966px;
+        letter-spacing: 0.00px;
+        line-height: normal;
+        opacity: 1;
+        position: absolute;
+        text-align: left;
+        top: 62px;
+        white-space: nowrap;
+        width: 146px;
+      }
+
+      .desktop-1 .about-us-C61RwL:hover{
+        box-shadow: inset 100px 0 0 0 #ffffff;
+        color: #cc710f;
+      } 
+      
+      .desktop-1 .rectangle-2-C61RwL {
+        --z-index: 10;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/rectangle-1.png);
+        background-size: 100% 100%;
+        cursor: pointer;
+        height: 44px;
+        left: 622px;
+        opacity: 1;
+        position: absolute;
+        top: 130px;
+        width: 196px;
+      }
+
+      .desktop-1 .arrow-1-C61RwL:hover{
+        transform: scale(1.1);
+      }
+      
+      .desktop-1 .arrow-1-C61RwL {
+        --z-index: 11;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5ebab90bc759cfdc5d97e/img/arrow-1-2@2x.png);
+        background-size: 100% 100%;
+        height: 17px;
+        left: 669px;
+        opacity: 1;
+        position: absolute;
+        top: 139px;
+        width: 100px;
+      }
+      
+      .desktop-1 .group-2-C61RwL {
+        --z-index: 12;
+        background-color: transparent;
+        height: 1469px;
+        left: 482px;
+        opacity: 1;
+        position: absolute;
+        top: 125px;
+        width: 1584px;
+      }
+      
+      .desktop-1 .likwidz123-457-zUixHA {
+        --z-index: 0;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz123-457-1.png);
+        background-size: 100% 100%;
+        height: 532px;
+        left: 868px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 86px;
+        width: 90px;
+      }
+      
+      .desktop-1 .likwidz1-23458-zUixHA {
+        --z-index: 1;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz1-23458-1.png);
+        background-size: 100% 100%;
+        height: 244px;
+        left: 923px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 655px;
+        width: 35px;
+      }
+      
+      .desktop-1 .likwidz12-3458-zUixHA {
+        --z-index: 2;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz12-3458-1.png);
+        background-size: 100% 100%;
+        height: 81px;
+        left: 352px;
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 818px;
+        width: 606px;
+      }
+      
+      .desktop-1 .likwidz123456-1-zUixHA {
+        --z-index: 3;
+        background-color: transparent;
+        background-image: url(https://cdn.animaapp.com/projects/65c5e72ee1d47795da781abd/releases/65c5e76a7fc157c12e418565/img/likwidz123456-1-1.png);
+        background-size: 100% 100%;
+        height: 822px;
+        left: calc(50.00% - 792px);
+        object-fit: cover;
+        opacity: 1;
+        position: absolute;
+        top: 0px;
+        width: 906px;
+      }
+      </style></head>
+
+<body style="margin: 0;background: #ffffff;">
+  <input type="hidden" id="anPageName" name="page" value="desktop-1">
+  <div class="auto-animated screen desktop-1" data-id="1:2" data-page="desktop-1" data-screens="desktop-4,desktop-3,desktop-2,desktop-1" style="opacity: 1;">
+    <div class="rectangle-1-C61RwL" onclick="Lib.autoanim_redirect('desktop-4,desktop-1%23desktop-3,,ease-in,255.5234432220459;desktop-3,desktop-1%23desktop-2,,ease-in,255.5234432220459;desktop-2,desktop-1%23desktop-1,,ease-in,255.5234432220459', event)" onmouseover="" data-id="56:77"></div>
+    <div class="arrow-2-C61RwL" data-id="56:80"></div>
+    <div class="arrow-3-C61RwL" data-id="120:7"></div>
+    <div class="frame-1-C61RwL" data-id="56:63">
+      <div class="group-1-WzCX2w" data-id="56:64">
+        <div class="logo-2-iBmTg4" data-id="56:65"></div>
+        <div class="ellipse-1-iBmTg4" data-id="56:66"></div>
+      </div><h1 class="likwidz-WzCX2w" data-id="56:67">LIKWIDZ</h1></div>
+      <div class="search-1-1-C61RwL" data-id="56:68"></div>
+      <div class="shopping-cart-1-1-C61RwL" data-id="56:69"></div>
+      <div class="user-1-C61RwL" data-id="56:70"></div>
+      <div class="logo-1-C61RwL" data-id="56:71"></div>
+      <div class="home-C61RwL" data-id="56:72">Home</div>
+      <div class="shop-C61RwL" data-id="56:73">Shop</div>
+      <div class="pre-order-C61RwL" data-id="56:74">pre-order</div>
+      <div class="tracker-C61RwL" data-id="56:75">tracker</div>
+      <div class="about-us-C61RwL" data-id="56:76">about us</div>
+      <div class="rectangle-2-C61RwL" onclick="Lib.autoanim_redirect('desktop-3,desktop-1%23desktop-4,,ease-in,255.5234432220459;desktop-2,desktop-1%23desktop-3,,ease-in,255.5234432220459;desktop-1,desktop-1%23desktop-2,,ease-in,255.5234432220459', event)" onmouseover="" data-id="55:53"></div>
+      <div class="arrow-1-C61RwL" data-id="55:54"></div>
+      <div class="group-2-C61RwL" data-id="56:81">
+        <div class="likwidz123-457-zUixHA" data-id="56:82"></div>
+        <div class="likwidz1-23458-zUixHA" data-id="56:83"></div>
+        <div class="likwidz12-3458-zUixHA" data-id="56:84"></div>
+        <div class="likwidz123456-1-zUixHA" data-id="56:85"></div>
+      </div>
+    </div>
+    <script src="launchpad-js/launchpad-banner.js" async=""></script>
+    <script defer="" src="https://animaapp.s3.amazonaws.com/static/restart-btn.min.js"></script>
+    <div id="t_preload_links"></div>
+  </body>
+</html>

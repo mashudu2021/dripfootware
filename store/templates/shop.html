@@ -1,0 +1,36 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="contain ">
+    {% for product in products reversed %}
+      <div class="product-card">
+        <div class="product-image">
+          <a href="{% url 'product' product.id %}"><img src="{{ product.image.url }}" alt="Product Image"></a>
+        </div>
+        <div class="product-details">
+          <h2 class="product-title">{{ product.name }}</h2>
+          <p class="product-price">R{{ product.price }}</p>
+          <p class="product-description">The Drip Liwkidz are the first sneakers that we dropped.</p>
+          <div class="buttons">
+            <button  class="add-to-cart"  data-product-url="{% url 'product' product.id %}">View Product</button>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.open-product');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const productUrl = this.getAttribute('data-product-url');
+            
+            window.location.href = productUrl;
+        });
+    });
+});
+</script>
+{% endblock %}

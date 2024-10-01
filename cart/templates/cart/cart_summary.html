@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
+{% if cart_items %}
+<div class="shop-cart">
+    <div class="column-labels">
+        <label class="carts-image">Image</label>
+        <label class="carts-details">Cart</label>
+        <label class="carts-price">Price</label>
+        <label class="carts-quantity">Quantity</label>
+        <label class="carts-size">Size</label>
+        <label class="carts-removal">Actions</label>
+    </div>
+    {% for item in cart_items %}
+    <div class="carts">
+        <div class="carts-image">
+            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+        </div>
+        <div class="carts-details">
+            <div class="product-title">{{ item.product.name }}</div>
+            <p class="carts-description">We designed the sneaker to offer a feeling of a massage on your feet. The outer sole has our heritage logo monogram and an octopus grid design. The sole can ...</p>
+        </div>
+        <div class="carts-price">R{{ item.product.price }}</div>
+        <div class="carts-quantity">
+            {{ item.quantity }}
+        </div>
+        <div class="carts-size">
+            <form class="size-form" action="{% url 'cart:update_cart' product_id=item.product.id %}" method="post">
+                {% csrf_token %}
+                <select name="size" onchange="this.form.submit()">
+                    {% for size_option in available_sizes %}
+                        <option value="{{ size_option }}" {% if item.size == size_option %}selected{% endif %}>Size {{ size_option }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+        <div class="carts-actions">
+            <form class="remove-form" action="{% url 'cart:remove_from_cart' product_id=item.product.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="size" value="{{ item.size }}">
+                <input type="hidden" name="action" value="delete">
+                <button class="remove-carts" type="submit">Remove</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="totals">
+        <div class="totals-item">
+            <label>Subtotal</label>
+            <div class="totals-value" id="cart-subtotal">R{{ subtotal }}</div>
+        </div>
+        <div class="totals-item">
+            <label>Tax (15%)</label>
+            <div class="totals-value" id="cart-tax">R{{ tax }}</div>
+        </div>
+        <div class="totals-item totals-item-total">
+            <label>Grand Total</label>
+            <div class="totals-value" id="cart-total">R{{ grand_total }}</div>
+        </div>
+    </div>
+
+    <button class="checkout">Checkout</button>
+
+{% else %}
+    <p class="h2s claw">Your cart is empty.</p>
+{% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Remove item from cart with AJAX
+  document.querySelectorAll('.remove-form').forEach(function(form) {
+      form.addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent default form submission
+
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', form.action);
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          xhr.setRequestHeader('X-CSRFToken', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+
+          var formData = new FormData(form);
+          var encodedData = new URLSearchParams(formData).toString();
+
+          xhr.onload = function() {
+              if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  if (response.message === 'Product removed from cart successfully!') {
+                      window.location.reload(); // Reload page or update UI as needed
+                  } else {
+                      alert('Failed to remove item from cart: ' + response.message);
+                  }
+              } else {
+                  alert('Failed to remove item from cart: ' + xhr.statusText);
+              }
+          };
+
+          xhr.onerror = function() {
+              alert('An error occurred while processing the request.');
+          };
+
+          xhr.send(encodedData);
+      });
+  });
+});
+
+  </script>
+  
+{% endblock %}

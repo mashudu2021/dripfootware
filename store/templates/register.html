@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <div class=" desktop-1"  data-page="desktop-1"style="opacity: 1;">
+    <section>
+
+      <hgroup>
+          <div class="h2s">Register</div>
+        <p>Please enter your details to register your account</p>
+      </hgroup>
+      
+      <form method = "POST" action="{% url 'register' %}" class = "login-form">    
+        {% csrf_token %}
+        {% for field in form %}
+        {{ field }}
+        <hr>
+        {% endfor %}
+        <ul class="form-text text-muted small">
+          <ul><li>Your password can\'t be too similar to your other personal information.</li>
+          <li>Your password must contain at least 8 characters.</li>
+          <li>Your password can\'t be a commonly used password.</li>
+          <li>Your password can\'t be entirely numeric.</li></ul>
+         
+          <div class="buttons">
+            <button class="add-to-cart">Register</button>
+          </div>
+          <p class="message">Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
+      </form>
+    </section>
+    </div>
+{% endblock %}
+ 
+
