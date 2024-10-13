@@ -772,6 +772,7 @@ a:focus {
   }
 
   .product-title {
+   font-weight:900;
    font-size: 1.2rem;
    margin-bottom: 10px;
    }
