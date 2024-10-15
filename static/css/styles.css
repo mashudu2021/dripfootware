@@ -1978,80 +1978,43 @@ label {
   }
 }
 
-
-/*===========================================
-Display Styles
-============================================*/
-.d-flex{
-  display: flex;
-}
-.d-flex-align-center{
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-}
-.d-flex-align-center-column{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-.flex-1{
-  flex: 1;
-}
-.flex-2{
-  flex: 2;
-}
-.section {
-            background-color: #ffffff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .section h2 {
-            color: #cc710f;
-            font-size: 24px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #cc710f;
-            padding-bottom: 5px;
-        }
-        .section p {
-            font-size: 16px;
-            margin: 10px 0;
-        }
-        .section ul {
-            list-style-type: square;
-            padding-left: 20px;
-        }
-
-p {
-      font-size: 1rem;
-       margin: 10px 0;
-       
-        }
-        .heade {
-  padding: 90px;
-  text-align: center;
-  background: #000000;
-  color: white;
-  font-size: 30px;
-  clip-path: polygon(
+.heade {
+    padding: 90px;
+    text-align: center;
+    background: #000000;
+    color: white;
+    font-size: 30px;
+    clip-path: polygon(
     0 0,
     100% 0,
     100% 100%,
     0 calc(100% - 4vw)
   );
 }
-img {
-  border-radius: 100%;
-}
 
 .layout {
-  width: 100%;
-  display: grid;
-  grid:
-    "sidebar body" 1fr
-    / 30% 1fr;
-  gap: 8px;
+    width: 100%;
+    margin: 4em 0em 9em;
+    padding: -1em 2em 2em 2em;
+    display: flex;
+    }
+.user-profile {
+    padding-left: 50px;
 }
-
+.line{
+    display: block;
+  background: #ffffff;
+  color: #636363;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #757575
+}
+.name {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin: 1.5rem 0px;
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    }
